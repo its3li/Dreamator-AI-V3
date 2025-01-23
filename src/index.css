@@ -1,0 +1,201 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-purple-darkest: #0F0817;
+  --color-purple-darker: #1A0B2E;
+  --color-purple-dark: #2D1B4E;
+  --color-purple: #4C3575;
+  --color-purple-light: #9D4EDD;
+  --color-accent: #FF2EFF;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-white;
+    background: var(--color-purple-darkest);
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(157, 78, 221, 0.05);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(157, 78, 221, 0.2);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(157, 78, 221, 0.3);
+  }
+
+  /* Arabic text */
+  .font-arabic {
+    font-family: 'Noto Sans Arabic', sans-serif;
+  }
+
+  /* Rockybilly text */
+  .font-rockybilly {
+    font-family: 'Rock Salt', cursive;
+    letter-spacing: -1px;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism effect */
+  .glass-morphism {
+    background: rgba(26, 11, 46, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(157, 78, 221, 0.1);
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #9D4EDD, #FF2EFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Animated background */
+  .animated-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animated-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at center, 
+        rgba(157, 78, 221, 0.03) 0%,
+        transparent 70%
+      );
+    animation: rotate 20s linear infinite;
+  }
+
+  .animated-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(to bottom,
+        var(--color-purple-darkest) 0%,
+        transparent 20%,
+        transparent 80%,
+        var(--color-purple-darkest) 100%
+      );
+    pointer-events: none;
+  }
+
+  /* Neon glow */
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+  }
+
+  /* Button hover effect */
+  .hover-effect {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hover-effect::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--x, 50%) var(--y, 50%),
+      rgba(157, 78, 221, 0.15) 0%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  .hover-effect:hover::after {
+    opacity: 1;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply ring-2 ring-purple-500/30 ring-offset-1 ring-offset-purple-900;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
